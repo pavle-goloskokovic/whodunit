@@ -1,7 +1,7 @@
 {
-    "name": "phaser3-webpack5-typescript-template",
+    "name": "whodunit",
     "version": "0.1.0",
-    "description": "Phaser 3.70, Webpack 5, and TypeScript template",
+    "description": "Who stole what",
     "main": "src/ts/game.ts",
     "scripts": {
         "start": "webpack-dev-server",
@@ -12,27 +12,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/pavle-goloskokovic/phaser3-webpack5-typescript-template.git"
+        "url": "git+https://github.com/pavle-goloskokovic/whodunit.git"
     },
-    "keywords": [
-        "phaser",
-        "type",
-        "script",
-        "typescript",
-        "boilerplate",
-        "template",
-        "gamedev",
-        "game",
-        "development",
-        "javascript",
-        "webpack"
-    ],
     "author": "Pavle Goloskoković",
-    "license": "MIT",
+    "license": "UNLICENSED",
     "bugs": {
-        "url": "https://github.com/pavle-goloskokovic/phaser3-webpack5-typescript-template/issues"
+        "url": "https://github.com/pavle-goloskokovic/whodunit/issues"
     },
-    "homepage": "https://github.com/pavle-goloskokovic/phaser3-webpack5-typescript-template#readme",
+    "homepage": "https://github.com/pavle-goloskokovic/whodunit#readme",
     "dependencies": {
         "phaser": "^3.70.0",
         "stats.js": "^0.17.0"
