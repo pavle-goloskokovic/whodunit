@@ -50,6 +50,10 @@ export default class Game extends Phaser.Scene {
             .setVisible(false);
         this.add.existing(giraffe);
 
+        this.add.existing(
+            new Suspect(this, 'regular', 'S', 'brown', x + 244, y - 75)
+                .setScale(8));
+
         this.add.image(x, 50, 'sprites', 'great-job')
             .setOrigin(0.5, 0);
 

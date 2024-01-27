@@ -29,7 +29,7 @@ export default class Head extends Phaser.GameObjects.Container {
 
         this.positionSmile();
 
-        this.drop = scene.add.image(6, -8.5,
+        this.drop = scene.add.image(0, 0,
             'sprites', 'drop');
 
         switch (headType)
@@ -47,9 +47,23 @@ export default class Head extends Phaser.GameObjects.Container {
                         break;
                 }
 
+                this.drop.x = 5;
+                this.drop.y = -8.5;
+
                 break;
 
             case 'S':
+
+                switch (hairType)
+                {
+                    case 'brown':
+                        hair.y = -2;
+                        break;
+                }
+
+                this.drop.x = 4.5;
+                this.drop.y = -7.5;
+
                 break;
         }
 
@@ -70,6 +84,12 @@ export default class Head extends Phaser.GameObjects.Container {
                 break;
 
             case 'S':
+                switch (this.smileType)
+                {
+                    case 'wide':
+                        this.smile.y = -2;
+                        break;
+                }
                 break;
         }
     }

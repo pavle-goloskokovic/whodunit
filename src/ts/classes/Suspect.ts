@@ -1,7 +1,7 @@
 import Head from './Head';
 
 export type HeadType = 'S' | 'L';
-export type HairType = 'beard' | 'brown';
+export type HairType = 'beard' | 'brown' | 'ginger' | 'blonde';
 
 export default class Suspect extends Phaser.GameObjects.Container {
 
@@ -23,6 +23,10 @@ export default class Suspect extends Phaser.GameObjects.Container {
             case 'pen':
                 body.x = 0.5;
                 body.y = -1;
+                break;
+
+            case 'regular':
+                body.x = -5.5;
                 break;
         }
 
