@@ -1,4 +1,5 @@
 import Giraffe from '../classes/Giraffe';
+import Suspect from '../classes/Suspect';
 
 /**
  * Game Phaser scene.
@@ -24,15 +25,20 @@ export default class Game extends Phaser.Scene {
         /*const overlay =*/ this.add.image(0, 0, 'sprites', 'overlay')
             .setOrigin(0, 0)
             .setScale(w, h)
-            .setVisible(!false);
+            .setVisible(false);
 
-        const giraffe = new Giraffe(this, x, y)
-            .setScale(10);
+        const giraffe = new Giraffe(this, x, y + 30)
+            .setScale(10)
+            .setVisible(false);
         this.add.existing(giraffe);
 
         this.add.image(x, 50, 'sprites', 'great-job')
             .setOrigin(0.5, 0);
 
         // TODO fireworks particles
+
+        /*const biz =*/ this.add.existing(
+            new Suspect(this, 'biz', 'L', 'brown', x -267, y + 6))
+            .setScale(8);
     }
 }
