@@ -22,6 +22,24 @@ export default class Game extends Phaser.Scene {
 
         this.add.image(x, y, 'sprites', 'bg');
 
+        /*const bags =*/ [
+            this.add.image(149, 358, 'sprites', 'bag')
+                .setScale(8),
+            this.add.image(325, 342, 'sprites', 'bag')
+                .setScale(8),
+        ];
+
+        /*const biz =*/ this.add.existing(
+            new Suspect(this, 'biz', 'L', 'brown', x -267, y + 6))
+            .setScale(8);
+
+        this.add.image(x - 8, y - 62, 'sprites', 'pen')
+            .setScale(8);
+
+        /*const pen =*/ this.add.existing(
+            new Suspect(this, 'pen', 'L', 'beard', x - 8, y + 6))
+            .setScale(8);
+
         /*const overlay =*/ this.add.image(0, 0, 'sprites', 'overlay')
             .setOrigin(0, 0)
             .setScale(w, h)
@@ -36,13 +54,5 @@ export default class Game extends Phaser.Scene {
             .setOrigin(0.5, 0);
 
         // TODO fireworks particles
-
-        /*const biz =*/ this.add.existing(
-            new Suspect(this, 'biz', 'L', 'brown', x -267, y + 6))
-            .setScale(8);
-
-        /*const pen =*/ this.add.existing(
-            new Suspect(this, 'pen', 'L', 'beard', x - 8, y + 6))
-            .setScale(8);
     }
 }
