@@ -18,9 +18,17 @@ export default class Suspect extends Phaser.GameObjects.Container {
             scene.add.image(0, 0, 'sprites', `body-${bodyFrame}`)
                 .setOrigin(0.5, 0);
 
+        switch (bodyFrame)
+        {
+            case 'pen':
+                body.x = 0.5;
+                body.y = -1;
+                break;
+        }
+
         const head =
             scene.add.existing(new Head(scene, headType, hairType, 0, 0));
 
-        this.add([body, head]);
+        this.add([head, body]);
     }
 }

@@ -41,6 +41,10 @@ export default class Head extends Phaser.GameObjects.Container {
                     case 'brown':
                         hair.y = -6;
                         break;
+
+                    case 'beard':
+                        hair.x = 0.5;
+                        break;
                 }
 
                 break;
@@ -49,7 +53,7 @@ export default class Head extends Phaser.GameObjects.Container {
                 break;
         }
 
-        this.add([skin, hair, this.smile, this.drop]);
+        this.add([skin, this.smile, hair, this.drop]);
     }
 
     private positionSmile (): void
@@ -60,7 +64,7 @@ export default class Head extends Phaser.GameObjects.Container {
                 switch (this.smileType)
                 {
                     case 'wide':
-                        this.smile.y = -3;
+                        this.smile.y = -2;
                         break;
                 }
                 break;

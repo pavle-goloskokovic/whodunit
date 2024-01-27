@@ -40,5 +40,9 @@ export default class Game extends Phaser.Scene {
         /*const biz =*/ this.add.existing(
             new Suspect(this, 'biz', 'L', 'brown', x -267, y + 6))
             .setScale(8);
+
+        /*const pen =*/ this.add.existing(
+            new Suspect(this, 'pen', 'L', 'beard', x - 8, y + 6))
+            .setScale(8);
     }
 }
