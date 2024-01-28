@@ -4,4 +4,4 @@
 
 ## [Play here!](https://pavle-goloskokovic.github.io/whodunit/)
 
-![whodunit](https://github.com/pavle-goloskokovic/whodunit/assets/7340300/3c4ad9bd-4796-4201-b911-408325461748)
+[![Watch on YouTube](https://github.com/pavle-goloskokovic/whodunit/assets/7340300/3c4ad9bd-4796-4201-b911-408325461748)](https://youtu.be/AbmsoUE-C0g)
