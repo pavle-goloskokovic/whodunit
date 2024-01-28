@@ -29,12 +29,6 @@ export default class Giraffe extends Phaser.GameObjects.Container {
 
             if (this.revealed === 3)
             {
-                // TODO giraffe found
-
-                console.log('giraffe found');
-
-                this.setScale(10);
-
                 return true;
             }
         }
