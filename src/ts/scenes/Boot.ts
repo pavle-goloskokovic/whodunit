@@ -18,7 +18,7 @@ export default class Boot extends Phaser.Scene {
         this.sound.mute = mute;
 
         this.input.setDefaultCursor(
-            `url('${require('../../assets/images/cursor.png')}'), pointer`);
+            `url(${require('../../assets/images/cursor.png')}), pointer`);
 
         console.info('Boot leave');
 

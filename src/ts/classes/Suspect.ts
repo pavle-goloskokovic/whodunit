@@ -63,7 +63,7 @@ export default class Suspect extends Phaser.GameObjects.Container {
 
         this.setSize(bounds.width, bounds.height)
             .setInteractive({
-                cursor: `url('${require('../../assets/images/pointer.png')}'), pointer`
+                cursor: `url(${require('../../assets/images/pointer.png')}), pointer`
             });
     }
 

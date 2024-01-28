@@ -18,7 +18,7 @@ export const
      * Setting which determines if stats should be enabled in game.
      * @type {boolean}
      */
-    stats = true,
+    stats = !true,
     /**
      * Game dimensions
      * @type {{w: number; h: number}}
