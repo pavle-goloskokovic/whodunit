@@ -62,7 +62,9 @@ export default class Suspect extends Phaser.GameObjects.Container {
         } as Phaser.Types.Input.InputConfiguration);*/
 
         this.setSize(bounds.width, bounds.height)
-            .setInteractive({ cursor: 'pointer' });
+            .setInteractive({
+                cursor: `url('${require('../../assets/images/pointer.png')}'), pointer`
+            });
     }
 
     update ()
