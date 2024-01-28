@@ -79,28 +79,67 @@ export default class Game extends Phaser.Scene {
             .setVisible(false);
 
         this.regular = this.add.existing(
-            new Suspect(this, 'regular', 'S', 'brown', x + 244, y - 75)
-                .setScale(8));
+            new Suspect(this, 'regular', 'S', 'brown', x + 244, y - 75))
+            .setScale(8)
+            .on('pointerdown', () =>
+            {
+                this.regular.setVisible(false).reveal();
+
+                this.gTop.visible =
+                    this.gRight.visible =
+                        this.gLeft.visible = true;
+            });
 
         this.gTop = this.add.existing(
-            new Suspect(this, 'g-top', 'S', 'brown', x + 244, y - 75)
-                .setScale(8)
-                .setVisible(false));
+            new Suspect(this, 'g-top', 'S', 'brown', x + 244, y - 75))
+            .setScale(8)
+            .setVisible(false)
+            .on('pointerdown', () =>
+            {
+                this.gTop/*.setVisible(false)*/.reveal();
+
+                if (this.giraffe.reveal(0))
+                {
+                    /*this.gTop.visible =
+                        this.gRight.visible =
+                            this.gLeft.visible = true;*/
+                }
+            });
 
         this.gRight = this.add.existing(
-            new Suspect(this, 'g-down-right', 'S', 'ginger', x + 244, y + 77)
-                .setScale(8)
-                .setVisible(false));
+            new Suspect(this, 'g-down-right', 'S', 'ginger', x + 244, y + 77))
+            .setScale(8)
+            .setVisible(false)
+            .on('pointerdown', () =>
+            {
+                this.gRight/*.setVisible(false)*/.reveal();
+
+                if (this.giraffe.reveal(1))
+                {
+                    /*this.gTop.visible =
+                        this.gRight.visible =
+                            this.gLeft.visible = true;*/
+                }
+            });
 
         this.gLeft = this.add.existing(
-            new Suspect(this, 'g-down-left', 'S', 'blonde', x + 148, y + 77)
-                .setScale(8)
-                .setVisible(false));
-
-        this.giraffe = new Giraffe(this, x + 204, y - 7) // end: x, y + 30
+            new Suspect(this, 'g-down-left', 'S', 'blonde', x + 148, y + 77))
             .setScale(8)
-            .setVisible(false);
-        this.add.existing(this.giraffe);
+            .setVisible(false)
+            .on('pointerdown', () =>
+            {
+                this.gLeft/*.setVisible(false)*/.reveal();
+
+                if (this.giraffe.reveal(2))
+                {
+                    /*this.gTop.visible =
+                        this.gRight.visible =
+                            this.gLeft.visible = true;*/
+                }
+            });
+
+        this.giraffe = this.add.existing(new Giraffe(this, x + 204, y - 7)) // end: x, y + 30
+            .setScale(8);
 
         /*this.greatJob =*/ this.add.image(x, 50, 'sprites', 'great-job')
             .setOrigin(0.5, 0)
