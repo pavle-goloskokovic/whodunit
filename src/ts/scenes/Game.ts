@@ -80,6 +80,10 @@ export default class Game extends Phaser.Scene {
     {
         console.info('Game enter');
 
+        this.sound.play('main', {
+            loop: true
+        });
+
         const scale = this.scale;
         const w = scale.width;
         const h = scale.height;
@@ -129,11 +133,6 @@ export default class Game extends Phaser.Scene {
 
                 this.pen.reveal();
             });
-
-        this.overlay = this.add.image(0, 0, 'sprites', 'overlay')
-            .setOrigin(0, 0)
-            .setScale(w, h)
-            .setAlpha(0);
 
         this.regular = this.add.existing(
             new Suspect(this, 'regular', 'S', 'brown', x + 244, y - 75))
@@ -201,6 +200,11 @@ export default class Game extends Phaser.Scene {
                 }
             });
 
+        this.overlay = this.add.image(0, 0, 'sprites', 'overlay')
+            .setOrigin(0, 0)
+            .setScale(w, h)
+            .setAlpha(0);
+
         this.giraffe = this.add.existing(new Giraffe(this, x + 204, y - 7)) // end: x, y + 30
             .setScale(8);
 
@@ -226,6 +230,11 @@ export default class Game extends Phaser.Scene {
         const h = scale.height;
         const x = w / 2;
         const y = h / 2;
+
+        this.sound.stopAll();
+        this.sound.play('end', {
+            loop: true
+        });
 
         this.tweens.add({
             targets: this.giraffe,

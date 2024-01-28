@@ -14,6 +14,11 @@ export default class Preloader extends Phaser.Scene {
     {
         console.info('Preloader enter');
 
+        this.load.audio('main',
+            require('../../assets/audio/moody-cop-show-130bpm-short-music-079613070_nw_prev.mp3'));
+        this.load.audio('end',
+            require('../../assets/audio/prime-tv-loop-01-pop-music-046865998_nw_prev.mp3'));
+
         this.load.atlas('sprites',
             require('../../assets/images/sprites.png'),
             spritesData);
