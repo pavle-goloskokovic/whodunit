@@ -45,29 +45,33 @@ export default class Game extends Phaser.Scene {
             .setScale(w, h)
             .setVisible(false);
 
-        const giraffe = new Giraffe(this, x, y + 30)
-            .setScale(10)
-            .setVisible(false);
-        this.add.existing(giraffe);
-
         this.add.existing(
             new Suspect(this, 'regular', 'S', 'brown', x + 244, y - 75)
                 .setScale(8));
 
-        this.add.existing(// TODO move above regular
+        this.add.existing(
             new Suspect(this, 'g-top', 'S', 'brown', x + 244, y - 75)
-                .setScale(8));
+                .setScale(8)
+                .setVisible(false));
 
         this.add.existing(
             new Suspect(this, 'g-down-right', 'S', 'ginger', x + 244, y + 77)
-                .setScale(8));
+                .setScale(8)
+                .setVisible(false));
 
         this.add.existing(
             new Suspect(this, 'g-down-left', 'S', 'blonde', x + 148, y + 77)
-                .setScale(8));
+                .setScale(8)
+                .setVisible(false));
+
+        const giraffe = new Giraffe(this, x + 204, y - 7) // end: x, y + 30
+            .setScale(8)
+            .setVisible(false);
+        this.add.existing(giraffe);
 
         this.add.image(x, 50, 'sprites', 'great-job')
-            .setOrigin(0.5, 0);
+            .setOrigin(0.5, 0)
+            .setVisible(false);
 
         // TODO fireworks particles
     }
