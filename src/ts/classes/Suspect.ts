@@ -61,7 +61,8 @@ export default class Suspect extends Phaser.GameObjects.Container {
             cursor: 'pointer'
         } as Phaser.Types.Input.InputConfiguration);*/
 
-        this.setSize(bounds.width, bounds.height);
+        this.setSize(bounds.width, bounds.height)
+            .setInteractive({ cursor: 'pointer' });
     }
 
     update ()
@@ -77,5 +78,6 @@ export default class Suspect extends Phaser.GameObjects.Container {
     {
         this.revealed = true;
         this.head.drop.setVisible(false);
+        this.removeInteractive();
     }
 }

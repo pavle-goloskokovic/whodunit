@@ -41,11 +41,8 @@ export default class Game extends Phaser.Scene {
         this.biz = this.add.existing(
             new Suspect(this, 'biz', 'L', 'brown', x -267, y + 6))
             .setScale(8)
-            .setInteractive({ cursor: 'pointer' })
             .on('pointerdown', () =>
             {
-                if (this.biz.revealed) { return; }
-
                 if (this.input.x < this.biz.x)
                 {
                     this.children.moveAbove(bags[0], this.biz);
@@ -60,17 +57,21 @@ export default class Game extends Phaser.Scene {
                     i < this.children.getIndex(bags[1]))
                 {
                     this.biz.reveal();
-
-                    this.biz.removeInteractive();
                 }
             });
 
-        this.add.image(x - 8, y - 62, 'sprites', 'pen')
+        const feather = this.add.image(x - 8, y - 62, 'sprites', 'pen')
             .setScale(8);
 
         this.pen = this.add.existing(
             new Suspect(this, 'pen', 'L', 'beard', x - 8, y + 6))
-            .setScale(8);
+            .setScale(8)
+            .on('pointerdown', () =>
+            {
+                feather.y -= 80;
+
+                this.pen.reveal();
+            });
 
         /*const overlay =*/ this.add.image(0, 0, 'sprites', 'overlay')
             .setOrigin(0, 0)
