@@ -28,6 +28,15 @@ export default class Suspect extends Phaser.GameObjects.Container {
             case 'regular':
                 body.x = -5.5;
                 break;
+
+            case 'g-top':
+                body.x = 0.5;
+                break;
+
+            case 'g-down-right':
+            case 'g-down-left':
+                body.x = -0.5;
+                break;
         }
 
         const head =

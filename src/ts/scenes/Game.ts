@@ -54,6 +54,18 @@ export default class Game extends Phaser.Scene {
             new Suspect(this, 'regular', 'S', 'brown', x + 244, y - 75)
                 .setScale(8));
 
+        this.add.existing(// TODO move above regular
+            new Suspect(this, 'g-top', 'S', 'brown', x + 244, y - 75)
+                .setScale(8));
+
+        this.add.existing(
+            new Suspect(this, 'g-down-right', 'S', 'ginger', x + 244, y + 77)
+                .setScale(8));
+
+        this.add.existing(
+            new Suspect(this, 'g-down-left', 'S', 'blonde', x + 148, y + 77)
+                .setScale(8));
+
         this.add.image(x, 50, 'sprites', 'great-job')
             .setOrigin(0.5, 0);
 

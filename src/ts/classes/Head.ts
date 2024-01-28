@@ -57,7 +57,12 @@ export default class Head extends Phaser.GameObjects.Container {
                 switch (hairType)
                 {
                     case 'brown':
+                    case 'ginger':
                         hair.y = -2;
+                        break;
+
+                    case 'blonde':
+                        hair.y = -1;
                         break;
                 }
 
