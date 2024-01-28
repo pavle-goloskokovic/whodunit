@@ -1,4 +1,4 @@
-import {HairType, HeadType} from './Suspect';
+import Suspect, {HairType, HeadType} from './Suspect';
 
 type SmileType = 'ooo' | 'smirk' | 'wide';
 
@@ -6,13 +6,16 @@ export default class Head extends Phaser.GameObjects.Container {
 
     private smileType: SmileType = 'wide';
     private readonly smile;
-    private drop;
+    readonly drop;
 
-    constructor (scene: Phaser.Scene,
+    constructor (
+        private suspect: Suspect,
         private headType: HeadType,
         hairType: HairType,
         x?: number, y?: number)
     {
+        const scene = suspect.scene;
+
         super(scene, x, y);
 
         const skin =
@@ -97,5 +100,17 @@ export default class Head extends Phaser.GameObjects.Container {
                 }
                 break;
         }
+    }
+
+    updateSmile (distance: number): void
+    {
+        this.smileType = distance < 150 ? 'wide' :
+            distance < 300 ? 'ooo' : 'smirk';
+
+        this.smile.setFrame(`smile-${this.smileType}-${this.headType}`);
+
+        this.drop.setVisible(this.smileType === 'wide' && !this.suspect.revealed);
+
+        this.positionSmile();
     }
 }

@@ -8,6 +8,15 @@ import Suspect from '../classes/Suspect';
  */
 export default class Game extends Phaser.Scene {
 
+    private biz: Suspect;
+    private pen: Suspect;
+    private regular: Suspect;
+    private gTop: Suspect;
+    private gRight: Suspect;
+    private gLeft: Suspect;
+    private giraffe: Giraffe;
+    // private greatJob: Phaser.GameObjects.Image;
+
     constructor () { super('game'); }
 
     create (): void
@@ -22,21 +31,44 @@ export default class Game extends Phaser.Scene {
 
         this.add.image(x, y, 'sprites', 'bg');
 
-        /*const bags =*/ [
+        const bags = [
             this.add.image(149, 358, 'sprites', 'bag')
                 .setScale(8),
             this.add.image(325, 342, 'sprites', 'bag')
                 .setScale(8),
         ];
 
-        /*const biz =*/ this.add.existing(
+        this.biz = this.add.existing(
             new Suspect(this, 'biz', 'L', 'brown', x -267, y + 6))
-            .setScale(8);
+            .setScale(8)
+            .setInteractive({ cursor: 'pointer' })
+            .on('pointerdown', () =>
+            {
+                if (this.biz.revealed) { return; }
+
+                if (this.input.x < this.biz.x)
+                {
+                    this.children.moveAbove(bags[0], this.biz);
+                }
+                else
+                {
+                    this.children.moveAbove(bags[1], this.biz);
+                }
+
+                const i = this.children.getIndex(this.biz);
+                if (i < this.children.getIndex(bags[0]) &&
+                    i < this.children.getIndex(bags[1]))
+                {
+                    this.biz.reveal();
+
+                    this.biz.removeInteractive();
+                }
+            });
 
         this.add.image(x - 8, y - 62, 'sprites', 'pen')
             .setScale(8);
 
-        /*const pen =*/ this.add.existing(
+        this.pen = this.add.existing(
             new Suspect(this, 'pen', 'L', 'beard', x - 8, y + 6))
             .setScale(8);
 
@@ -45,34 +77,44 @@ export default class Game extends Phaser.Scene {
             .setScale(w, h)
             .setVisible(false);
 
-        this.add.existing(
+        this.regular = this.add.existing(
             new Suspect(this, 'regular', 'S', 'brown', x + 244, y - 75)
                 .setScale(8));
 
-        this.add.existing(
+        this.gTop = this.add.existing(
             new Suspect(this, 'g-top', 'S', 'brown', x + 244, y - 75)
                 .setScale(8)
                 .setVisible(false));
 
-        this.add.existing(
+        this.gRight = this.add.existing(
             new Suspect(this, 'g-down-right', 'S', 'ginger', x + 244, y + 77)
                 .setScale(8)
                 .setVisible(false));
 
-        this.add.existing(
+        this.gLeft = this.add.existing(
             new Suspect(this, 'g-down-left', 'S', 'blonde', x + 148, y + 77)
                 .setScale(8)
                 .setVisible(false));
 
-        const giraffe = new Giraffe(this, x + 204, y - 7) // end: x, y + 30
+        this.giraffe = new Giraffe(this, x + 204, y - 7) // end: x, y + 30
             .setScale(8)
             .setVisible(false);
-        this.add.existing(giraffe);
+        this.add.existing(this.giraffe);
 
-        this.add.image(x, 50, 'sprites', 'great-job')
+        /*this.greatJob =*/ this.add.image(x, 50, 'sprites', 'great-job')
             .setOrigin(0.5, 0)
             .setVisible(false);
 
         // TODO fireworks particles
+    }
+
+    update (/*time: number, delta: number*/)
+    {
+        this.biz.update();
+        this.pen.update();
+        this.regular.update();
+        this.gTop.update();
+        this.gRight.update();
+        this.gLeft.update();
     }
 }
