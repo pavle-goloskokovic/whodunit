@@ -74,15 +74,31 @@ export default class Game extends Phaser.Scene {
             } as any,
             pixelWidth: 4
         });
+
+        const loadOn = (event: string) =>
+        {
+            this.load.on(event, (...args: any[])=>
+            {
+                console.log(event, args);
+            });
+        };
+        loadOn(Phaser.Loader.Events.ADD);
+        loadOn(Phaser.Loader.Events.FILE_LOAD);
+        loadOn(Phaser.Loader.Events.FILE_LOAD_ERROR);
+        loadOn(Phaser.Loader.Events.COMPLETE);
+        loadOn(Phaser.Loader.Events.FILE_PROGRESS);
+        loadOn(Phaser.Loader.Events.FILE_KEY_COMPLETE);
+        loadOn(Phaser.Loader.Events.FILE_COMPLETE);
+        loadOn(Phaser.Loader.Events.POST_PROCESS);
+        loadOn(Phaser.Loader.Events.PROGRESS);
+        loadOn(Phaser.Loader.Events.START);
     }
 
     create (): void
     {
         console.info('Game enter');
 
-        this.sound.play('main', {
-            loop: true
-        });
+        this.lazyLoadAudio();
 
         const scale = this.scale;
         const w = scale.width;
@@ -232,9 +248,16 @@ export default class Game extends Phaser.Scene {
         const y = h / 2;
 
         this.sound.stopAll();
-        this.sound.play('end', {
-            loop: true
-        });
+        try
+        {
+            this.sound.play('end', {
+                loop: true
+            });
+        }
+        catch (e)
+        {
+            console.error(e);
+        }
 
         this.tweens.add({
             targets: this.giraffe,
@@ -378,5 +401,29 @@ export default class Game extends Phaser.Scene {
                 updateEmitter(emitter3);
             }
         });
+    }
+
+    private lazyLoadAudio (): void
+    {
+        const loadEnd = () =>
+        {
+            this.load.audio('end', require(
+                '../../assets/audio/prime-tv-loop-01-pop-music-046865998_nw_prev.mp3'));
+        };
+
+        this.load.once(Phaser.Loader.Events.FILE_LOAD_ERROR, loadEnd);
+        this.load.once(`${Phaser.Loader.Events.FILE_KEY_COMPLETE}audio-main`, () =>
+        {
+            this.load.off(Phaser.Loader.Events.FILE_LOAD_ERROR, loadEnd);
+
+            this.sound.play('main', { loop: true });
+
+            loadEnd();
+        });
+
+        this.load.audio('main', require(
+            '../../assets/audio/moody-cop-show-130bpm-short-music-079613070_nw_prev.mp3'));
+
+        this.load.start();
     }
 }
