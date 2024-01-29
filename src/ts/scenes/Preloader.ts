@@ -14,22 +14,25 @@ export default class Preloader extends Phaser.Scene {
     {
         console.info('Preloader enter');
 
-        const loadOn = (event: string) =>
+        if (process.env.NODE_ENV !== 'production')
         {
-            this.load.on(event, (...args: any[])=>
+            const loadOn = (event: string) =>
             {
-                console.log(event, args);
-            });
-        };
-        loadOn(Phaser.Loader.Events.ADD);
-        loadOn(Phaser.Loader.Events.FILE_LOAD);
-        loadOn(Phaser.Loader.Events.FILE_LOAD_ERROR);
-        loadOn(Phaser.Loader.Events.COMPLETE);
-        loadOn(Phaser.Loader.Events.FILE_PROGRESS);
-        loadOn(Phaser.Loader.Events.FILE_COMPLETE);
-        loadOn(Phaser.Loader.Events.POST_PROCESS);
-        loadOn(Phaser.Loader.Events.PROGRESS);
-        loadOn(Phaser.Loader.Events.START);
+                this.load.on(event, (...args: any[])=>
+                {
+                    console.log(event, args);
+                });
+            };
+            loadOn(Phaser.Loader.Events.ADD);
+            loadOn(Phaser.Loader.Events.FILE_LOAD);
+            loadOn(Phaser.Loader.Events.FILE_LOAD_ERROR);
+            loadOn(Phaser.Loader.Events.COMPLETE);
+            loadOn(Phaser.Loader.Events.FILE_PROGRESS);
+            loadOn(Phaser.Loader.Events.FILE_COMPLETE);
+            loadOn(Phaser.Loader.Events.POST_PROCESS);
+            loadOn(Phaser.Loader.Events.PROGRESS);
+            loadOn(Phaser.Loader.Events.START);
+        }
 
         this.load.atlas('sprites',
             require('../../assets/images/sprites.png'),
